@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f2f2f2;
+    }
+    .calculator {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+    }
+    .display {
+        font-size: 24px;
+        border: none;
+        width: calc(100% - 20px);
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: right;
+        border-radius: 5px;
+    }
+    .btn {
+        font-size: 18px;
+        padding: 10px;
+        margin: 5px;
+        width: calc(25% - 10px);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn.gray {
+        background-color: #ccc;
+    }
+    .btn.orange {
+        background-color: orange;
+    }
+    .btn.equal {
+        background-color: #28a745;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+<div class="calculator">
+    <input type="text" class="display" id="display" readonly>
+    <button class="btn gray" onclick="appendToDisplay('7')">7</button>
+    <button class="btn gray" onclick="appendToDisplay('8')">8</button>
+    <button class="btn gray" onclick="appendToDisplay('9')">9</button>
+    <button class="btn orange" onclick="setOperator('+')">+</button>
+    <button class="btn gray" onclick="appendToDisplay('4')">4</button>
+    <button class="btn gray" onclick="appendToDisplay('5')">5</button>
+    <button class="btn gray" onclick="appendToDisplay('6')">6</button>
+    <button class="btn orange" onclick="setOperator('-')">-</button>
+    <button class="btn gray" onclick="appendToDisplay('1')">1</button>
+    <button class="btn gray" onclick="appendToDisplay('2')">2</button>
+    <button class="btn gray" onclick="appendToDisplay('3')">3</button>
+    <button class="btn orange" onclick="setOperator('*')">*</button>
+    <button class="btn gray" onclick="appendToDisplay('0')">0</button>
+    <button class="btn gray" onclick="appendToDisplay('.')">.</button>
+    <button class="btn equal" onclick="calculate()">=</button>
+    <button class="btn orange" onclick="setOperator('/')">/</button>
+    <button class="btn gray" onclick="clearDisplay()">C</button>
+</div>
+
+<script>
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function setOperator(operator) {
+        var display = document.getElementById('display').value;
+        if (display !== '' && !isNaN(display[display.length - 1])) {
+            document.getElementById('display').value += operator;
+        }
+    }
+
+    function calculate() {
+        var display = document.getElementById('display').value;
+        if (display !== '') {
+            var result = eval(display);
+            document.getElementById('display').value = result;
+        }
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+</script>
+</body>
+</html>
